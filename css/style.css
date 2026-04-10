@@ -344,6 +344,7 @@ a {
 .floors-image img {
   width: 100%;
   height: auto;
+  max-height: calc(100vh - 120px); /* не залезает под навбар */
   object-fit: contain;
 }
 
