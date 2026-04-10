@@ -1,0 +1,623 @@
+/* ============================================
+   Приморские Бани — Landing Page Styles
+   Adaptive layout, no hardcoded px widths
+   ============================================ */
+
+:root {
+  --bg: #f2f2f2;
+  --text-primary: #272727;
+  --text-secondary: #797979;
+  --text-dark: #212121;
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-radius: 40px;
+  --font-display: 'DRUZHOK', 'Georgia', serif;
+  --font-body: 'Onest', sans-serif;
+}
+
+/* Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-snap-type: y proximity;
+}
+
+/* Snap sections */
+.hero,
+.building,
+.decorative,
+.floors {
+  scroll-snap-align: start;
+  height: 100vh;
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-title {
+  width: 72%;
+  max-width: 1380px;
+  font-family: var(--font-display);
+  font-size: clamp(48px, 10.4vw, 200px);
+  font-weight: normal;
+  font-style: normal;
+  line-height: 0.95;
+  text-align: center;
+  background: radial-gradient(ellipse at 47% 38%, #272727 0%, #414141 25%, #5a5a5a 50%, #747474 75%, #8d8d8d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 2;
+}
+
+.hero-elephant {
+  width: 30%;
+  max-width: 500px;
+  flex-shrink: 0;
+  margin-top: -3vh;
+  z-index: 3;
+}
+
+.hero-elephant img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Elephant arm animation */
+#arm-right {
+  transform-origin: 650px 390px;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Hero blobs */
+.hero-blob {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-blob--left {
+  left: -10%;
+  top: -5%;
+  width: 40%;
+}
+
+.hero-blob--right {
+  right: -10%;
+  top: -9%;
+  width: 40%;
+}
+
+.hero-blob--bottom {
+  left: 6%;
+  top: 35%;
+  width: 40%;
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: clamp(12px, 1.67vw, 32px);
+  padding: clamp(12px, 1.25vw, 24px);
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--card-radius);
+  z-index: 10000;
+  white-space: nowrap;
+  width: fit-content;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(12px, 0.83vw, 16px);
+  line-height: 0.95;
+  color: var(--text-dark);
+  transition: opacity 0.2s;
+}
+
+.nav-link:hover {
+  opacity: 0.6;
+}
+
+/* Gradient fade overlay */
+.hero-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    #fdfdfd 29.1%,
+    var(--bg) 100%
+  );
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ============================================
+   Building Section
+   ============================================ */
+.building {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.building-image {
+  width: 58%;
+  max-width: 1108px;
+  z-index: 1;
+}
+
+.building-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Building blobs */
+.building-blob {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: 50%;
+  opacity: 0.7;
+}
+
+.building-blob--1 {
+  left: -5%;
+  top: -10%;
+}
+
+.building-blob--2 {
+  right: -10%;
+  top: -15%;
+}
+
+.building-blob--3 {
+  right: -5%;
+  bottom: -20%;
+}
+
+/* ============================================
+   Decorative Section
+   ============================================ */
+.decorative {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.decorative-elephant {
+  position: relative;
+  width: clamp(120px, 17.3vw, 333px);
+  margin: 0 auto;
+  z-index: 2;
+  /* Two independent animations layered: drift moves it, spin rotates */
+  animation:
+    elephant-drift 40s linear infinite,
+    elephant-spin 55s linear infinite;
+}
+
+/* Long wandering path — feels like slow linear motion with changing direction */
+@keyframes elephant-drift {
+  0%   { translate: 0px 0px; }
+  8%   { translate: 30px -18px; }
+  18%  { translate: 55px 5px; }
+  28%  { translate: 20px 35px; }
+  38%  { translate: -25px 28px; }
+  48%  { translate: -50px -5px; }
+  58%  { translate: -30px -35px; }
+  68%  { translate: 10px -40px; }
+  78%  { translate: 45px -15px; }
+  88%  { translate: 25px 20px; }
+  100% { translate: 0px 0px; }
+}
+
+/* Full slow rotation — independent from drift */
+@keyframes elephant-spin {
+  0%   { rotate: 0deg; }
+  100% { rotate: 360deg; }
+}
+
+.decorative-elephant img {
+  width: 100%;
+  height: auto;
+}
+
+.decorative-text {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 10.4vw, 200px);
+  font-weight: normal;
+  font-style: normal;
+  line-height: 0.95;
+  color: var(--text-primary);
+  white-space: nowrap;
+  z-index: 1;
+  text-align: center;
+  margin-top: 2vw;
+}
+
+.decorative-text--2 {
+  text-align: right;
+  padding-right: 2%;
+}
+
+/* Decorative blobs */
+.decorative-blob {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: 20%;
+}
+
+.decorative-blob--left {
+  left: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.decorative-blob--right {
+  right: 13%;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+/* ============================================
+   Floors Section
+   ============================================ */
+.floors {
+  position: relative;
+  width: 100%;
+  scroll-snap-stop: always;
+}
+
+.floors-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Building — centered with slight left offset like Figma */
+.floors-image {
+  position: absolute;
+  /* Figma: centered -55.5px offset in 1920 ≈ ~2.9% left of center */
+  left: 50%;
+  top: 11%;
+  transform: translateX(calc(-50% - 2.9%));
+  width: 55.3%;  /* 1061/1920 */
+  z-index: 1;
+}
+
+.floors-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Decorative blobs */
+.floors-blob {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: 49.7%;  /* 954/1920 */
+}
+
+.floors-blob--1 {
+  /* Figma: center+77px, center+240.33px */
+  left: 50%;
+  top: 50%;
+  transform: translate(calc(-50% + 4%), calc(-50% + 19.1%));
+}
+
+.floors-blob--2 {
+  /* Figma: center-310px, center-50.33px */
+  left: 50%;
+  top: 50%;
+  transform: translate(calc(-50% - 16.1%), calc(-50% - 4%));
+}
+
+.floors-blob--3 {
+  /* Figma: center+204px, center-261.67px */
+  left: 50%;
+  top: 50%;
+  transform: translate(calc(-50% + 10.6%), calc(-50% - 20.8%));
+}
+
+/* Description — top right */
+.floors-description {
+  position: absolute;
+  right: 5%;
+  top: 15%;
+  width: 24%;  /* 462/1920 */
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(14px, 1.25vw, 24px);
+  line-height: 1.27;
+  color: var(--text-primary);
+  z-index: 10000;
+}
+
+/* Floor cards — above smoke overlay */
+.floor-card {
+  position: absolute;
+  width: clamp(220px, 21vw, 404px);
+  padding: clamp(16px, 1.67vw, 32px);
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--card-radius);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 0.83vw, 16px);
+  z-index: 10000;
+}
+
+/* Left card — Figma: left 88px, top 393px in 1920x1260 */
+.floor-card--left {
+  left: 4.6%;
+  top: 31.2%;
+}
+
+/* Right card — Figma: right 204px, bottom 375px */
+.floor-card--right {
+  right: 10.6%;
+  bottom: 29.8%;
+}
+
+.floor-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 2.7vw, 52px);
+  font-weight: normal;
+  font-style: normal;
+  line-height: 0.95;
+  color: #000;
+}
+
+.floor-card__text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(14px, 1.25vw, 24px);
+  line-height: 1.14;
+  color: var(--text-secondary);
+}
+
+.floor-card__link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(13px, 1.04vw, 20px);
+  line-height: 0.95;
+  color: var(--text-dark);
+  transition: opacity 0.2s;
+}
+
+.floor-card__link:hover {
+  opacity: 0.6;
+}
+
+/* ============================================
+   Tablet (<=1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  html {
+    height: auto;
+    overflow: visible;
+  }
+
+  body {
+    scroll-snap-type: none;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .hero,
+  .building,
+  .decorative,
+  .floors {
+    scroll-snap-align: none;
+    height: auto;
+    overflow: visible;
+    min-height: auto;
+  }
+
+  .hero-title {
+    width: 90%;
+  }
+
+  .hero-elephant {
+    width: 45%;
+  }
+
+  .nav {
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 24px;
+  }
+
+  .building-image {
+    width: 80%;
+  }
+
+  .decorative-elephant {
+    width: 25%;
+  }
+
+  .floors-image {
+    width: 80%;
+  }
+
+  .floors-description {
+    width: 90%;
+  }
+
+  .floor-card {
+    width: 80%;
+    max-width: 400px;
+    border-radius: 24px;
+  }
+}
+
+/* ============================================
+   Mobile (<=640px)
+   ============================================ */
+@media (max-width: 640px) {
+  :root {
+    --card-radius: 20px;
+  }
+
+  .hero {
+    padding: 8vw 0 6vw;
+  }
+
+  .hero-title {
+    width: 95%;
+  }
+
+  .hero-elephant {
+    width: 70%;
+  }
+
+  .hero-blob--left {
+    width: 60%;
+  }
+
+  .hero-blob--right {
+    width: 60%;
+  }
+
+  .hero-blob--bottom {
+    width: 60%;
+  }
+
+  .nav {
+    gap: 10px;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    max-width: 90%;
+    border-radius: 20px;
+  }
+
+  .nav-link {
+    font-size: 13px;
+  }
+
+  .building {
+    padding: 8vw 0;
+  }
+
+  .building-image {
+    width: 92%;
+  }
+
+  .building-blob {
+    display: none;
+  }
+
+  .decorative {
+    padding: 12vw 0 6vw;
+    overflow-x: hidden;
+  }
+
+  .decorative-elephant {
+    width: 35%;
+  }
+
+  .decorative-text {
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+    padding: 0 4%;
+  }
+
+  .decorative-text--2 {
+    text-align: center;
+    padding-right: 4%;
+  }
+
+  .decorative-blob {
+    display: none;
+  }
+
+  .floors {
+    padding: 6vw 0 10vw;
+  }
+
+  .floors-image {
+    width: 95%;
+  }
+
+  .floors-description {
+    width: 92%;
+    font-size: 15px;
+  }
+
+  .floor-card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .floor-card__title {
+    font-size: 32px;
+  }
+
+  .floor-card__text {
+    font-size: 16px;
+  }
+
+  .floor-card__link {
+    font-size: 15px;
+  }
+}
