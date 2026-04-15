@@ -9,7 +9,7 @@
 
   /* ────── CONFIG ────── */
   var CFG = {
-    maxParticles: 400,
+    maxParticles: 320,
     spawnRate: 2,             // particles spawned per frame
     lifetime: [180, 360],     // frames (~3-6 sec at 60fps)
     size: [80, 200],          // px radius — large for overlap & merge
@@ -17,7 +17,7 @@
     noiseScale: 0.002,        // simplex spatial frequency
     noiseTimeScale: 0.0008,   // simplex temporal frequency
     noiseDrift: 0.08,         // ambient drift from noise
-    alphaMax: 0.45,           // peak opacity — visible white fog on light bg
+    alphaMax: 0.32,           // peak opacity — visible white fog on light bg
     fadeInFrames: 30,         // slow fade in
     // interaction push
     mouseRadius: 300,         // px — area of influence
@@ -27,9 +27,9 @@
     clickRadius: 350,         // click blast radius
     damping: 0.96,            // velocity decay per frame
     uiSafeZone: {
-      selector: '.nav, .floors-stage, .floor-showcase__panel--plan, .floor-showcase__panel--rank',
-      padding: 40,
-      fade: 120
+      selector: '.nav, .floor-showcase__panel--plan, .floor-showcase__panel--rank, .floor-showcase__intro',
+      padding: 32,
+      fade: 96
     }
   };
 
