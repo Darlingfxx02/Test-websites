@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=scroll-unified-4">
+  <link rel="stylesheet" href="css/style.css?v=scroll-unified-5">
 </head>
 <body>
 
@@ -476,7 +476,7 @@
     </div>
   </section>
 
-  <script src="js/smoke.js?v=scroll-unified-4"></script>
+  <script src="js/smoke.js?v=scroll-unified-5"></script>
   <script>
     (function () {
       var eyeL = document.getElementById('eye-left');
@@ -810,10 +810,10 @@
           var distance = Math.abs(offset);
           var current = distance === 0;
           var opacity = current ? 1 : 0;
-          var scale = current ? 1 : distance === 1 ? 0.95 : 0.92;
-          var shift = current ? 0 : offset * 14;
-          var blur = current ? 0 : distance === 1 ? 12 : 18;
-          var visualScale = current ? 1 : distance === 1 ? 0.9 : 0.84;
+          var scale = 1;
+          var shift = 0;
+          var blur = 0;
+          var visualScale = 1;
 
           slide.style.setProperty('--floor-opacity', opacity.toFixed(4));
           slide.style.setProperty('--floor-scale', scale.toFixed(4));
