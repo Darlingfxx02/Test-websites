@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=scroll-unified-3">
+  <link rel="stylesheet" href="css/style.css?v=scroll-unified-4">
 </head>
 <body>
 
@@ -476,7 +476,7 @@
     </div>
   </section>
 
-  <script src="js/smoke.js?v=scroll-unified-3"></script>
+  <script src="js/smoke.js?v=scroll-unified-4"></script>
   <script>
     (function () {
       var eyeL = document.getElementById('eye-left');
@@ -781,6 +781,13 @@
         return Math.max(stage.getBoundingClientRect().height, 1);
       }
 
+      function getStageRange(stageHeight) {
+        var prices = document.getElementById('prices');
+        var fallbackBottom = floors.offsetTop + floors.offsetHeight;
+        var sectionBottom = prices ? prices.offsetTop : fallbackBottom;
+        return Math.max(sectionBottom - floors.offsetTop - stageHeight, 1);
+      }
+
       function updateFloors() {
         ticking = false;
 
@@ -790,32 +797,30 @@
         }
 
         var stageHeight = getStageHeight();
-        var range = Math.max(floors.offsetHeight - stageHeight, 1);
-        var local = clamp(getScrollTop() - floors.offsetTop, 0, range);
-        var segment = Math.max(range / Math.max(slides.length - 1, 1), 1);
+        var range = getStageRange(stageHeight);
+        var local = clamp(-floors.getBoundingClientRect().top, 0, range);
+        var segment = Math.max(range / Math.max(slides.length, 1), 1);
         var progress = local / segment;
-        var activeIndex = clamp(Math.round(progress), 0, slides.length - 1);
+        var activeIndex = clamp(Math.floor(progress), 0, slides.length - 1);
 
         floors.style.setProperty('--floors-progress', progress.toFixed(4));
 
         slides.forEach(function (slide, index) {
-          var delta = index - progress;
           var offset = index - activeIndex;
-          var distance = Math.abs(delta);
-          var current = index === activeIndex;
-          var blend = clamp(1 - distance, 0, 1);
-          var opacity = clamp(1 - distance * 0.8, 0, 1);
-          var scale = 0.9 + blend * 0.1;
-          var shift = delta * 12;
-          var blur = Math.min(distance * 18, 18);
-          var visualScale = 0.82 + blend * 0.18;
+          var distance = Math.abs(offset);
+          var current = distance === 0;
+          var opacity = current ? 1 : 0;
+          var scale = current ? 1 : distance === 1 ? 0.95 : 0.92;
+          var shift = current ? 0 : offset * 14;
+          var blur = current ? 0 : distance === 1 ? 12 : 18;
+          var visualScale = current ? 1 : distance === 1 ? 0.9 : 0.84;
 
           slide.style.setProperty('--floor-opacity', opacity.toFixed(4));
           slide.style.setProperty('--floor-scale', scale.toFixed(4));
           slide.style.setProperty('--floor-shift', shift.toFixed(3) + 'vh');
           slide.style.setProperty('--floor-blur', blur.toFixed(3) + 'px');
           slide.style.setProperty('--floor-visual-scale', visualScale.toFixed(4));
-          slide.style.zIndex = String(200 - Math.round(distance * 100));
+          slide.style.zIndex = current ? '120' : String(100 - Math.round(distance * 10));
 
           slide.classList.toggle('is-current', current);
           slide.classList.toggle('is-before', offset < 0);
@@ -839,8 +844,9 @@
         if (isNaN(floorIndex) || floorIndex < 0 || floorIndex >= slides.length) return;
 
         var stageHeight = getStageHeight();
-        var range = Math.max(floors.offsetHeight - stageHeight, 1);
-        var target = floors.offsetTop + range * (floorIndex / Math.max(slides.length - 1, 1));
+        var range = getStageRange(stageHeight);
+        var segment = Math.max(range / Math.max(slides.length, 1), 1);
+        var target = floors.offsetTop + segment * floorIndex;
 
         getScrollRoot().scrollTop = target;
         requestUpdate();

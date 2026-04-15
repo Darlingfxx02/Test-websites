@@ -15,7 +15,7 @@
   --nav-reserved-space: 96px;
   --floors-stage-gap: clamp(18px, 2vh, 30px);
   --floors-available-height: calc(100vh - var(--nav-reserved-space) - var(--floors-stage-gap));
-  --floors-scroll-step-factor: 1.35;
+  --floors-scroll-step-factor: 1.15;
 }
 
 /* Reset */
@@ -1240,8 +1240,8 @@ a {
   --floors-count: 4;
   --floors-progress: 0;
   --floors-scroll-step: calc(var(--floors-available-height) * var(--floors-scroll-step-factor));
-  height: calc(var(--floors-available-height) + (var(--floors-count) - 1) * var(--floors-scroll-step));
-  min-height: calc(var(--floors-available-height) + (var(--floors-count) - 1) * var(--floors-scroll-step));
+  height: calc(var(--floors-available-height) + var(--floors-count) * var(--floors-scroll-step));
+  min-height: calc(var(--floors-available-height) + var(--floors-count) * var(--floors-scroll-step));
   overflow: visible;
 }
 
