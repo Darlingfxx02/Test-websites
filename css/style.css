@@ -1246,10 +1246,24 @@ a {
 }
 
 .floors-stage {
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
   height: var(--floors-available-height);
   overflow: hidden;
+}
+
+.floors-stage.is-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.floors-stage.is-bottom {
+  top: auto;
+  bottom: 0;
 }
 
 .floors-stage::before,

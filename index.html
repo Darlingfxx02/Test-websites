@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=scroll-unified-5">
+  <link rel="stylesheet" href="css/style.css?v=scroll-unified-6">
 </head>
 <body>
 
@@ -476,7 +476,7 @@
     </div>
   </section>
 
-  <script src="js/smoke.js?v=scroll-unified-5"></script>
+  <script src="js/smoke.js?v=scroll-unified-6"></script>
   <script>
     (function () {
       var eyeL = document.getElementById('eye-left');
@@ -764,6 +764,8 @@
       }
 
       function resetMobileState() {
+        stage.classList.remove('is-fixed', 'is-bottom');
+
         slides.forEach(function (slide) {
           slide.style.removeProperty('--floor-opacity');
           slide.style.removeProperty('--floor-scale');
@@ -798,10 +800,16 @@
 
         var stageHeight = getStageHeight();
         var range = getStageRange(stageHeight);
-        var local = clamp(-floors.getBoundingClientRect().top, 0, range);
+        var scrollTop = getScrollTop();
+        var sectionTop = floors.offsetTop;
+        var fixedEnd = sectionTop + range;
+        var local = clamp(scrollTop - sectionTop, 0, range);
         var segment = Math.max(range / Math.max(slides.length, 1), 1);
         var progress = local / segment;
         var activeIndex = clamp(Math.floor(progress), 0, slides.length - 1);
+
+        stage.classList.toggle('is-fixed', scrollTop >= sectionTop && scrollTop < fixedEnd);
+        stage.classList.toggle('is-bottom', scrollTop >= fixedEnd);
 
         floors.style.setProperty('--floors-progress', progress.toFixed(4));
 
