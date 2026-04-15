@@ -27,7 +27,7 @@
     clickRadius: 350,         // click blast radius
     damping: 0.96,            // velocity decay per frame
     uiSafeZone: {
-      selector: '.nav',
+      selector: '.nav, .floor-showcase__panel--plan, .floor-showcase__panel--rank',
       padding: 40,
       fade: 120
     }

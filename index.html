@@ -10,22 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=scroll-refactor-2">
-  <style>
-    .floor-showcase__panel--plan .floor-feature {
-      background-color: transparent;
-      box-shadow: none;
-    }
-
-    .floor-showcase__panel--plan .floor-feature:not(.is-active):hover {
-      background-color: transparent;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css?v=scroll-unified-3">
 </head>
 <body>
 
   <!-- Hero Section -->
-  <section class="hero page-section page-section--screen page-section--snap">
+  <section class="hero page-section page-section--screen">
     <!-- Title -->
     <h1 class="hero-title">Приморские Бани</h1>
 
@@ -95,7 +85,7 @@
   </section>
 
   <!-- Advantages Section -->
-  <section class="building page-section page-section--screen page-section--snap" id="advantages" aria-label="Преимущества комплекса">
+  <section class="building page-section page-section--screen" id="advantages" aria-label="Преимущества комплекса">
     <div class="building-inner">
       <img class="building-blob building-blob--1" src="assets/blob-ellipse.svg" alt="" aria-hidden="true">
       <img class="building-blob building-blob--2" src="assets/blob-ellipse.svg" alt="" aria-hidden="true">
@@ -123,7 +113,7 @@
   </section>
 
   <!-- Decorative Section -->
-  <section class="decorative page-section page-section--screen page-section--snap">
+  <section class="decorative page-section page-section--screen">
     <div class="decorative-elephant">
       <svg class="elephant-small-svg" preserveAspectRatio="xMidYMid meet" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 244.496 257" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="Group 3">
@@ -153,7 +143,7 @@
   </section>
 
   <!-- Floors Section -->
-  <section class="floors page-section page-section--snap" id="floors">
+  <section class="floors page-section" id="floors">
     <div class="floors-stage">
       <div class="floors-stack">
         <article class="floor-showcase floor-showcase--1" id="floor-1">
@@ -277,7 +267,6 @@
         </article>
       </div>
     </div>
-    <div class="floors-snap-track" aria-hidden="true"></div>
   </section>
 
   <!-- Pricing Section -->
@@ -487,7 +476,7 @@
     </div>
   </section>
 
-  <script src="js/smoke.js?v=scroll-refactor-2"></script>
+  <script src="js/smoke.js?v=scroll-unified-3"></script>
   <script>
     (function () {
       var eyeL = document.getElementById('eye-left');
@@ -745,7 +734,6 @@
     (function () {
       var floors = document.querySelector('.floors');
       var stage = floors ? floors.querySelector('.floors-stage') : null;
-      var snapTrack = floors ? floors.querySelector('.floors-snap-track') : null;
       if (!floors) return;
       if (!stage) return;
 
@@ -766,19 +754,6 @@
 
       function getScrollTop() {
         return getScrollRoot().scrollTop || window.scrollY || 0;
-      }
-
-      function syncSnapTrack() {
-        if (!snapTrack) return;
-
-        snapTrack.innerHTML = '';
-
-        for (var i = 1; i < slides.length; i++) {
-          var step = document.createElement('div');
-          step.className = 'floors-snap-step';
-          step.setAttribute('aria-hidden', 'true');
-          snapTrack.appendChild(step);
-        }
       }
 
       function syncSlideFocus(slide, isActive) {
@@ -868,7 +843,6 @@
         requestUpdate();
       }
 
-      syncSnapTrack();
       window.addEventListener('scroll', requestUpdate, { passive: true });
       window.addEventListener('resize', requestUpdate);
       window.addEventListener('hashchange', syncHashFloor);

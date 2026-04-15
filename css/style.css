@@ -28,7 +28,6 @@ html {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  scroll-snap-type: y proximity;
 }
 
 body {
@@ -50,11 +49,6 @@ body {
   height: 100vh;
   min-height: 100vh;
   overflow: hidden;
-}
-
-.page-section--snap {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 img {
@@ -237,12 +231,10 @@ a {
   height: auto;
   min-height: 100vh;
   overflow: visible;
-  scroll-snap-align: none;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding: clamp(32px, 3vw, 56px) 0 clamp(180px, 13vw, 240px);
-  scroll-snap-stop: always;
 }
 
 .pricing-inner {
@@ -725,7 +717,6 @@ a {
 .floors {
   position: relative;
   width: 100%;
-  scroll-snap-stop: always;
 }
 
 .floors-inner {
@@ -861,7 +852,6 @@ a {
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    scroll-snap-type: none;
   }
 
   body {
@@ -872,11 +862,6 @@ a {
     height: auto;
     min-height: auto;
     overflow: visible;
-  }
-
-  .page-section--snap {
-    scroll-snap-align: none;
-    scroll-snap-stop: normal;
   }
 
   .hero-title {
@@ -1253,6 +1238,8 @@ a {
 .floors {
   --floors-count: 4;
   --floors-progress: 0;
+  height: calc(var(--floors-count) * var(--floors-available-height));
+  min-height: calc(var(--floors-count) * var(--floors-available-height));
   overflow: visible;
 }
 
@@ -1261,19 +1248,6 @@ a {
   top: 0;
   height: var(--floors-available-height);
   overflow: hidden;
-}
-
-.floors-snap-track {
-  display: flex;
-  flex-direction: column;
-}
-
-.floors-snap-step {
-  height: var(--floors-available-height);
-  pointer-events: none;
-  user-select: none;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .floors-stage::before,
@@ -1490,6 +1464,7 @@ a {
   -webkit-backdrop-filter: blur(20px);
   border-radius: var(--card-radius);
   box-shadow: 0 16px 48px rgba(255, 255, 255, 0.24);
+  z-index: 10000;
 }
 
 .floor-showcase__panel--plan {
@@ -1752,10 +1727,6 @@ a {
     position: relative;
     height: auto;
     overflow: visible;
-  }
-
-  .floors-snap-track {
-    display: none;
   }
 
   .floors-stage::before,
