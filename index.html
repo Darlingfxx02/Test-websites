@@ -10,22 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=floors-transparent-1">
-  <style>
-    .floor-showcase__panel--plan .floor-feature {
-      background-color: transparent;
-      box-shadow: none;
-    }
-
-    .floor-showcase__panel--plan .floor-feature:not(.is-active):hover {
-      background-color: transparent;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css?v=scroll-unified-3">
 </head>
 <body>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero page-section page-section--screen">
     <!-- Title -->
     <h1 class="hero-title">Приморские Бани</h1>
 
@@ -95,7 +85,7 @@
   </section>
 
   <!-- Advantages Section -->
-  <section class="building" id="advantages" aria-label="Преимущества комплекса">
+  <section class="building page-section page-section--screen" id="advantages" aria-label="Преимущества комплекса">
     <div class="building-inner">
       <img class="building-blob building-blob--1" src="assets/blob-ellipse.svg" alt="" aria-hidden="true">
       <img class="building-blob building-blob--2" src="assets/blob-ellipse.svg" alt="" aria-hidden="true">
@@ -123,7 +113,7 @@
   </section>
 
   <!-- Decorative Section -->
-  <section class="decorative">
+  <section class="decorative page-section page-section--screen">
     <div class="decorative-elephant">
       <svg class="elephant-small-svg" preserveAspectRatio="xMidYMid meet" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 244.496 257" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="Group 3">
@@ -153,7 +143,7 @@
   </section>
 
   <!-- Floors Section -->
-  <section class="floors" id="floors">
+  <section class="floors page-section" id="floors">
     <div class="floors-stage">
       <div class="floors-stack">
         <article class="floor-showcase floor-showcase--1" id="floor-1">
@@ -280,7 +270,7 @@
   </section>
 
   <!-- Pricing Section -->
-  <section class="pricing" id="prices">
+  <section class="pricing page-section" id="prices">
     <div class="pricing-inner">
       <div class="pricing-toggle" aria-hidden="true">
         <div class="pricing-toggle__option pricing-toggle__option--active">
@@ -486,7 +476,7 @@
     </div>
   </section>
 
-  <script src="js/smoke.js"></script>
+  <script src="js/smoke.js?v=scroll-unified-3"></script>
   <script>
     (function () {
       var eyeL = document.getElementById('eye-left');
@@ -758,6 +748,14 @@
         return Math.min(Math.max(value, min), max);
       }
 
+      function getScrollRoot() {
+        return document.scrollingElement || document.documentElement;
+      }
+
+      function getScrollTop() {
+        return getScrollRoot().scrollTop || window.scrollY || 0;
+      }
+
       function syncSlideFocus(slide, isActive) {
         var features = slide.querySelectorAll('.floor-showcase__panel--plan .floor-feature[role="button"]');
         for (var i = 0; i < features.length; i++) {
@@ -793,28 +791,31 @@
 
         var stageHeight = getStageHeight();
         var range = Math.max(floors.offsetHeight - stageHeight, 1);
-        var local = clamp(-floors.getBoundingClientRect().top, 0, range);
+        var local = clamp(getScrollTop() - floors.offsetTop, 0, range);
         var segment = Math.max(range / Math.max(slides.length - 1, 1), 1);
-        var activeIndex = clamp(Math.round(local / segment), 0, slides.length - 1);
+        var progress = local / segment;
+        var activeIndex = clamp(Math.round(progress), 0, slides.length - 1);
 
-        floors.style.setProperty('--floors-progress', String(activeIndex));
+        floors.style.setProperty('--floors-progress', progress.toFixed(4));
 
         slides.forEach(function (slide, index) {
+          var delta = index - progress;
           var offset = index - activeIndex;
-          var distance = Math.abs(offset);
-          var current = distance === 0;
-          var opacity = current ? 1 : 0;
-          var scale = current ? 1 : distance === 1 ? 0.95 : 0.92;
-          var shift = current ? 0 : offset * 16;
-          var blur = current ? 0 : distance === 1 ? 14 : 18;
-          var visualScale = current ? 1 : distance === 1 ? 0.9 : 0.84;
+          var distance = Math.abs(delta);
+          var current = index === activeIndex;
+          var blend = clamp(1 - distance, 0, 1);
+          var opacity = clamp(1 - distance * 0.8, 0, 1);
+          var scale = 0.9 + blend * 0.1;
+          var shift = delta * 12;
+          var blur = Math.min(distance * 18, 18);
+          var visualScale = 0.82 + blend * 0.18;
 
           slide.style.setProperty('--floor-opacity', opacity.toFixed(4));
           slide.style.setProperty('--floor-scale', scale.toFixed(4));
           slide.style.setProperty('--floor-shift', shift.toFixed(3) + 'vh');
           slide.style.setProperty('--floor-blur', blur.toFixed(3) + 'px');
           slide.style.setProperty('--floor-visual-scale', visualScale.toFixed(4));
-          slide.style.zIndex = current ? '120' : String(100 - Math.round(distance * 10));
+          slide.style.zIndex = String(200 - Math.round(distance * 100));
 
           slide.classList.toggle('is-current', current);
           slide.classList.toggle('is-before', offset < 0);
@@ -841,184 +842,16 @@
         var range = Math.max(floors.offsetHeight - stageHeight, 1);
         var target = floors.offsetTop + range * (floorIndex / Math.max(slides.length - 1, 1));
 
-        document.scrollingElement.scrollTop = target;
-        document.body.scrollTop = target;
+        getScrollRoot().scrollTop = target;
         requestUpdate();
       }
 
       window.addEventListener('scroll', requestUpdate, { passive: true });
-      document.body.addEventListener('scroll', requestUpdate, { passive: true });
       window.addEventListener('resize', requestUpdate);
       window.addEventListener('hashchange', syncHashFloor);
 
       requestUpdate();
       requestAnimationFrame(syncHashFloor);
-    })();
-
-    /* ── Scroll-by-section: умный скролл ── */
-    (function () {
-      if (window.matchMedia('(max-width: 1024px)').matches) return;
-
-      var sections = document.querySelectorAll('.hero, .pricing, .building, .decorative, .floors');
-      var pricingSection = document.querySelector('.pricing');
-      var floorsSection = document.querySelector('.floors');
-      var targetIndex = 0;
-      var animId = 0;
-      var isAnimating = false;
-      var animProgress = 0;
-      var DURATION = 1000;
-      var TRIGGER = 0.3;
-      var direction = 0;
-      var acceptInput = true;
-
-      /* ── Группировка wheel-событий в «тики» ──
-         Одно физическое движение колеса = пачка events за ~50-80мс.
-         Мы реагируем только на ПЕРВЫЙ event в пачке,
-         остальные игнорируем пока не пройдёт TICK_COOLDOWN. */
-      var TICK_COOLDOWN = 120;     /* мс — минимальный интервал между тиками */
-      var lastTickTime = 0;
-
-      function isMouseWheel(e) {
-        if (e.deltaMode === 1) return true;
-        if (Math.abs(e.deltaY) >= 50) return true;
-        return false;
-      }
-
-      function isNewTick() {
-        var now = performance.now();
-        if (now - lastTickTime < TICK_COOLDOWN) return false;
-        lastTickTime = now;
-        return true;
-      }
-
-      function easeInOutQuart(t) {
-        return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
-      }
-
-      function closestIndex() {
-        var scrollTop = document.body.scrollTop;
-        var best = 0, bestDist = Infinity;
-        for (var i = 0; i < sections.length; i++) {
-          var d = Math.abs(sections[i].offsetTop - scrollTop);
-          if (d < bestDist) { bestDist = d; best = i; }
-        }
-        return best;
-      }
-
-      function animateTo(index) {
-        var myId = ++animId;
-        var dest = sections[index].offsetTop;
-        var start = document.body.scrollTop;
-        var distance = dest - start;
-
-        if (Math.abs(distance) < 1) {
-          finish();
-          return;
-        }
-
-        isAnimating = true;
-        animProgress = 0;
-        acceptInput = false;
-        document.body.style.scrollSnapType = 'none';
-
-        var vh = window.innerHeight;
-        var dur = DURATION * Math.min(Math.abs(distance) / vh, 1.5);
-        dur = Math.max(dur, 400);
-
-        var t0 = performance.now();
-
-        function frame(now) {
-          if (myId !== animId) return;
-          animProgress = Math.min((now - t0) / dur, 1);
-          if (animProgress >= TRIGGER) acceptInput = true;
-          document.body.scrollTop = start + distance * easeInOutQuart(animProgress);
-          if (animProgress < 1) {
-            requestAnimationFrame(frame);
-          } else {
-            finish();
-          }
-        }
-
-        function finish() {
-          document.body.scrollTop = sections[index].offsetTop;
-          document.body.style.scrollSnapType = '';
-          isAnimating = false;
-          animProgress = 0;
-          acceptInput = true;
-        }
-
-        requestAnimationFrame(frame);
-      }
-
-      function getSectionViewportHeight(section) {
-        if (!section) return window.innerHeight;
-
-        var stickyStage = section.querySelector('.floors-stage');
-        if (stickyStage && !window.matchMedia('(max-width: 1024px)').matches) {
-          return Math.max(stickyStage.getBoundingClientRect().height, 1);
-        }
-
-        return window.innerHeight;
-      }
-
-      function isInsideTallSection(section, scrollTop) {
-        if (!section) return false;
-
-        var sectionTop = section.offsetTop;
-        var sectionBottom = sectionTop + section.scrollHeight - getSectionViewportHeight(section);
-
-        if (sectionBottom <= sectionTop) return false;
-        return scrollTop >= sectionTop && scrollTop <= sectionBottom;
-      }
-
-      document.body.addEventListener('wheel', function (e) {
-        if (window.innerWidth <= 1024) return;
-        if (!isMouseWheel(e)) return;
-
-        var scrollTop = document.body.scrollTop;
-
-        if (isInsideTallSection(pricingSection, scrollTop) || isInsideTallSection(floorsSection, scrollTop)) {
-          return;
-        }
-
-        e.preventDefault();
-
-        /* Игнорируем повторные events от одного тика колеса */
-        if (!isNewTick()) return;
-
-        var dir = e.deltaY > 0 ? 1 : -1;
-
-        /* Не анимируемся → стартуем на 1 блок */
-        if (!isAnimating) {
-          targetIndex = closestIndex();
-          var next = targetIndex + dir;
-          if (next < 0 || next >= sections.length) return;
-          direction = dir;
-          targetIndex = next;
-          animateTo(targetIndex);
-          return;
-        }
-
-        /* Анимируемся, ещё не прошли trigger point → игнорируем */
-        if (!acceptInput) return;
-
-        /* Прошли trigger point, пользователь крутит дальше → +1 блок */
-        var next = targetIndex + dir;
-        if (next < 0 || next >= sections.length) return;
-        direction = dir;
-        targetIndex = next;
-        animateTo(targetIndex);
-      }, { passive: false });
-
-      /* Синхронизация при нативном скролле (тачпад / скроллбар) */
-      var syncTimer;
-      document.body.addEventListener('scroll', function () {
-        if (isAnimating) return;
-        clearTimeout(syncTimer);
-        syncTimer = setTimeout(function () {
-          targetIndex = closestIndex();
-        }, 150);
-      });
     })();
   </script>
 </body>

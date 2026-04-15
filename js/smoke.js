@@ -27,7 +27,7 @@
     clickRadius: 350,         // click blast radius
     damping: 0.96,            // velocity decay per frame
     uiSafeZone: {
-      selector: '.nav',
+      selector: '.nav, .floor-showcase__panel--plan, .floor-showcase__panel--rank',
       padding: 40,
       fade: 120
     }
@@ -241,14 +241,17 @@
 
   // Scroll — push particles in scroll direction
   var scrollDelta = 0;
-  var lastScrollY = window.scrollY || document.body.scrollTop || 0;
+  function getScrollTop() {
+    var root = document.scrollingElement || document.documentElement;
+    return root.scrollTop || window.scrollY || 0;
+  }
+  var lastScrollY = getScrollTop();
   function onScroll() {
-    var sy = window.scrollY || document.body.scrollTop || 0;
+    var sy = getScrollTop();
     scrollDelta += sy - lastScrollY;
     lastScrollY = sy;
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  document.body.addEventListener('scroll', onScroll, { passive: true });
 
   /* ────── ANIMATION ────── */
   var frameCount = 0;
