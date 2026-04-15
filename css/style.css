@@ -1711,6 +1711,33 @@ a {
   }
 }
 
+@media (max-height: 840px) and (min-width: 1025px) {
+  .floor-showcase--4 {
+    padding-bottom: 12px;
+  }
+
+  .floor-showcase--4 .floor-showcase__panel--plan {
+    max-width: 438px;
+  }
+
+  .floor-showcase--4 .floor-feature-list {
+    gap: 3px;
+  }
+
+  .floor-showcase--4 .floor-feature {
+    min-height: 39px;
+    padding: 9px 11px;
+    font-size: 13px;
+    border-radius: 20px;
+  }
+
+  .floor-showcase--4 .floor-feature::before {
+    flex-basis: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
 @media (max-width: 1024px) {
   .floors {
     height: auto;
