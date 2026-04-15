@@ -26,6 +26,11 @@
     clickPush: 20,            // impulse radius blast on click
     clickRadius: 350,         // click blast radius
     damping: 0.96,            // velocity decay per frame
+    uiSafeZone: {
+      selector: '.nav',
+      padding: 40,
+      fade: 120
+    }
   };
 
   /* ────── SIMPLEX NOISE (2-D, public domain) ────── */
@@ -90,6 +95,74 @@
   document.body.appendChild(canvas);
   var ctx = canvas.getContext('2d');
   var W, H, dpr;
+  var safeZones = [];
+
+  function refreshSafeZones() {
+    safeZones.length = 0;
+
+    if (!CFG.uiSafeZone || !CFG.uiSafeZone.selector) return;
+
+    var nodes = document.querySelectorAll(CFG.uiSafeZone.selector);
+    for (var i = 0; i < nodes.length; i++) {
+      var rect = nodes[i].getBoundingClientRect();
+      if (!rect.width || !rect.height) continue;
+
+      safeZones.push({
+        left: rect.left - CFG.uiSafeZone.padding,
+        top: rect.top - CFG.uiSafeZone.padding,
+        right: rect.right + CFG.uiSafeZone.padding,
+        bottom: rect.bottom + CFG.uiSafeZone.padding,
+        fade: CFG.uiSafeZone.fade
+      });
+    }
+  }
+
+  function isInsideSafeZone(x, y, spread) {
+    spread = spread || 0;
+
+    for (var i = 0; i < safeZones.length; i++) {
+      var zone = safeZones[i];
+      if (
+        x >= zone.left - spread &&
+        x <= zone.right + spread &&
+        y >= zone.top - spread &&
+        y <= zone.bottom + spread
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function getSafeZoneVisibility(x, y, spread) {
+    spread = spread || 0;
+    var visibility = 1;
+
+    for (var i = 0; i < safeZones.length; i++) {
+      var zone = safeZones[i];
+      var left = zone.left - spread;
+      var top = zone.top - spread;
+      var right = zone.right + spread;
+      var bottom = zone.bottom + spread;
+      var dx = 0;
+      var dy = 0;
+
+      if (x < left) dx = left - x;
+      else if (x > right) dx = x - right;
+
+      if (y < top) dy = top - y;
+      else if (y > bottom) dy = y - bottom;
+
+      if (dx === 0 && dy === 0) return 0;
+
+      var distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance >= zone.fade) continue;
+
+      visibility *= distance / zone.fade;
+    }
+
+    return visibility;
+  }
 
   function resize() {
     dpr = window.devicePixelRatio || 1;
@@ -99,6 +172,7 @@
     canvas.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     buildSprite();
+    refreshSafeZones();
   }
   window.addEventListener('resize', resize);
   resize();
@@ -117,12 +191,17 @@
     }
     if (!p) { p = {}; pool.push(p); }
 
+    p.size = rand(CFG.size[0], CFG.size[1]);
+
     // spawn at random position across viewport
     p.x = rand(-80, W + 80);
     p.y = rand(-80, H + 80);
+    for (var attempt = 0; attempt < 6 && isInsideSafeZone(p.x, p.y, p.size * 0.45); attempt++) {
+      p.x = rand(-80, W + 80);
+      p.y = rand(-80, H + 80);
+    }
     p.vx = 0;
     p.vy = 0;
-    p.size = rand(CFG.size[0], CFG.size[1]);
     p.maxLife = rand(CFG.lifetime[0], CFG.lifetime[1]) | 0;
     p.life = 0;
     p.alive = true;
@@ -176,6 +255,8 @@
 
   function update() {
     frameCount++;
+
+    if (frameCount % 30 === 1) refreshSafeZones();
 
     // spawn ambient particles
     for (var s = 0; s < CFG.spawnRate; s++) spawn();
@@ -297,6 +378,9 @@
           alpha = CFG.alphaMax;
         }
       }
+      if (alpha <= 0.001) continue;
+
+      alpha *= getSafeZoneVisibility(p.x, p.y, p.size * 0.45);
       if (alpha <= 0.001) continue;
 
       ctx.globalAlpha = alpha;

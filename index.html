@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Приморские Бани — банный комплекс нового поколения</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=advantages-3">
 </head>
 <body>
 
@@ -77,14 +80,35 @@
       <a href="#services" class="nav-link">Дополнительные услуги</a>
       <a href="#reviews" class="nav-link">Отзывы</a>
       <a href="#gallery" class="nav-link">Галерея</a>
+      <a href="#" class="nav-link nav-link--call" aria-label="Позвонить">Позвонить</a>
     </nav>
   </section>
 
-  <!-- Building Section -->
-  <section class="building">
-    <!-- Building image -->
-    <div class="building-image">
-      <img src="assets/building-top.png" alt="Банный комплекс — вид сверху">
+  <!-- Advantages Section -->
+  <section class="building" id="advantages" aria-label="Преимущества комплекса">
+    <div class="building-inner">
+      <img class="building-blob building-blob--1" src="assets/blob-ellipse.svg" alt="" aria-hidden="true">
+      <img class="building-blob building-blob--2" src="assets/blob-ellipse.svg" alt="" aria-hidden="true">
+      <img class="building-blob building-blob--3" src="assets/blob-ellipse.svg" alt="" aria-hidden="true">
+
+      <div class="building-image">
+        <img src="assets/building-top.png" alt="Изометрия здания банного комплекса" loading="lazy">
+      </div>
+
+      <article class="building-card building-card--left">
+        <h3 class="building-card__title">Бассейны и купели</h3>
+        <p class="building-card__text">Теплая вода, гидромассаж и ледяные купели. Атмосфера полного релакса</p>
+      </article>
+
+      <article class="building-card building-card--top-right">
+        <h3 class="building-card__title">Парные и сауны</h3>
+        <p class="building-card__text">Русские и турецкие парные, финские сауны и снеговая комната</p>
+      </article>
+
+      <article class="building-card building-card--bottom-right">
+        <h3 class="building-card__title">Рестораны и зоны отдыха</h3>
+        <p class="building-card__text">Изысканные блюда, лаунж-зоны и панорамный бар для компании</p>
+      </article>
     </div>
   </section>
 
@@ -119,35 +143,335 @@
   </section>
 
   <!-- Floors Section -->
-  <section class="floors">
-    <div class="floors-inner">
-      <!-- Decorative blobs -->
-      <img class="floors-blob floors-blob--1" src="assets/ellipse-5.svg" alt="">
-      <img class="floors-blob floors-blob--2" src="assets/ellipse-5.svg" alt="">
-      <img class="floors-blob floors-blob--3" src="assets/ellipse-5.svg" alt="">
+  <section class="floors" id="floors">
+    <div class="floors-stage">
+      <div class="floors-stack">
+        <article class="floor-showcase floor-showcase--1" id="floor-1">
+          <div class="floor-showcase__panel floor-showcase__panel--plan">
+            <h3 class="floor-showcase__panel-title">План этажа</h3>
+            <ul class="floor-feature-list" aria-label="Первый этаж — план этажа">
+              <li class="floor-feature floor-feature--thermo"><span>Немецкая сауна</span></li>
+              <li class="floor-feature floor-feature--steam"><span>Турецкая парная</span></li>
+              <li class="floor-feature floor-feature--snow"><span>Снежная комната</span></li>
+              <li class="floor-feature floor-feature--waves is-active"><span>Плавательный бассейн с многоуровневой очисткой</span></li>
+              <li class="floor-feature floor-feature--bubbles"><span>Гидромассажный бассейн</span></li>
+              <li class="floor-feature floor-feature--drop"><span>Холодная купель (14°)</span></li>
+              <li class="floor-feature floor-feature--cascade"><span>Ляденой водопад</span></li>
+            </ul>
+          </div>
 
-      <!-- Building image -->
-      <div class="floors-image">
-        <img src="assets/building-3d.png" alt="Банный комплекс — изометрия">
+          <div class="floor-showcase__visual">
+            <img src="assets/floor-1.png" alt="Изометрия первого этажа банного комплекса">
+          </div>
+
+          <div class="floor-showcase__aside">
+            <header class="floor-showcase__intro">
+              <h2 class="floor-showcase__title">1 этаж</h2>
+              <p class="floor-showcase__summary">Оснащен специальными бассейнами и спа зонами</p>
+            </header>
+
+            <div class="floor-showcase__panel floor-showcase__panel--rank">
+              <h3 class="floor-showcase__panel-title">Первый разряд</h3>
+              <ul class="floor-feature-list floor-feature-list--compact" aria-label="Первый этаж — первый разряд">
+                <li class="floor-feature floor-feature--hanger"><span>Мужская раздевалка</span></li>
+                <li class="floor-feature floor-feature--hanger"><span>Женская раздевалка</span></li>
+                <li class="floor-feature floor-feature--bath"><span>Мужская парная</span></li>
+                <li class="floor-feature floor-feature--bath"><span>Женская парная</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="floor-showcase floor-showcase--2" id="floor-2">
+          <div class="floor-showcase__panel floor-showcase__panel--plan">
+            <h3 class="floor-showcase__panel-title">План этажа</h3>
+            <ul class="floor-feature-list" aria-label="Второй этаж — план этажа">
+              <li class="floor-feature floor-feature--cup"><span>Самоварня</span></li>
+              <li class="floor-feature floor-feature--cutlery"><span>Ресторан</span></li>
+              <li class="floor-feature floor-feature--ball"><span>Мыльный футбол</span></li>
+              <li class="floor-feature floor-feature--thermo is-active"><span>Панорамная сауна</span></li>
+              <li class="floor-feature floor-feature--massage"><span>Массаж</span></li>
+              <li class="floor-feature floor-feature--seat"><span>Балкон</span></li>
+            </ul>
+          </div>
+
+          <div class="floor-showcase__visual">
+            <img src="assets/floor-2.png" alt="Изометрия второго этажа банного комплекса">
+          </div>
+
+          <div class="floor-showcase__aside floor-showcase__aside--single">
+            <header class="floor-showcase__intro">
+              <h2 class="floor-showcase__title">2 этаж</h2>
+              <p class="floor-showcase__summary">Объединяет гастрономию и расслабление</p>
+            </header>
+          </div>
+        </article>
+
+        <article class="floor-showcase floor-showcase--3" id="floor-3">
+          <div class="floor-showcase__panel floor-showcase__panel--plan">
+            <h3 class="floor-showcase__panel-title">План этажа</h3>
+            <ul class="floor-feature-list floor-feature-list--compact" aria-label="Третий этаж — план этажа">
+              <li class="floor-feature floor-feature--wine is-active"><span>Бар-ресторан</span></li>
+              <li class="floor-feature floor-feature--seat"><span>Атриум</span></li>
+            </ul>
+          </div>
+
+          <div class="floor-showcase__visual">
+            <img src="assets/floor-3.png" alt="Изометрия третьего этажа банного комплекса">
+          </div>
+
+          <div class="floor-showcase__aside">
+            <header class="floor-showcase__intro">
+              <h2 class="floor-showcase__title">3 этаж</h2>
+              <p class="floor-showcase__summary">Создан для размеренного отдыха в более камерной и спокойной обстановке</p>
+            </header>
+
+            <div class="floor-showcase__panel floor-showcase__panel--rank">
+              <h3 class="floor-showcase__panel-title">Высший разряд</h3>
+              <ul class="floor-feature-list floor-feature-list--compact" aria-label="Третий этаж — высший разряд">
+                <li class="floor-feature floor-feature--hanger"><span>Женская раздевалка</span></li>
+                <li class="floor-feature floor-feature--hanger"><span>Мужская раздевалка</span></li>
+                <li class="floor-feature floor-feature--hanger"><span>Раздевалка</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="floor-showcase floor-showcase--4" id="floor-4">
+          <div class="floor-showcase__panel floor-showcase__panel--plan">
+            <h3 class="floor-showcase__panel-title">План этажа</h3>
+            <ul class="floor-feature-list" aria-label="Четвёртый этаж — план этажа">
+              <li class="floor-feature floor-feature--wine is-active"><span>Бар</span></li>
+              <li class="floor-feature floor-feature--seat"><span>Терраса</span></li>
+              <li class="floor-feature floor-feature--wood"><span>Баня на дровах</span></li>
+              <li class="floor-feature floor-feature--drop"><span>Холодная купель (14°)</span></li>
+              <li class="floor-feature floor-feature--bubbles"><span>Гидромассажный бассейн</span></li>
+              <li class="floor-feature floor-feature--infrared"><span>Инфракрасная сауна</span></li>
+              <li class="floor-feature floor-feature--thermo"><span>Финская сауна</span></li>
+              <li class="floor-feature floor-feature--steam"><span>Турецкая парная</span></li>
+              <li class="floor-feature floor-feature--massage"><span>Мыльный массаж</span></li>
+              <li class="floor-feature floor-feature--sun"><span>Солярий</span></li>
+            </ul>
+          </div>
+
+          <div class="floor-showcase__visual">
+            <img src="assets/floor-4.png" alt="Изометрия четвёртого этажа банного комплекса">
+          </div>
+
+          <div class="floor-showcase__aside floor-showcase__aside--single">
+            <header class="floor-showcase__intro">
+              <h2 class="floor-showcase__title">4 этаж</h2>
+              <p class="floor-showcase__summary">Пространство с ощущением свободы и лёгкости, где отдых становится более насыщенным и живым</p>
+            </header>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="prices">
+    <div class="pricing-inner">
+      <div class="pricing-toggle" aria-hidden="true">
+        <div class="pricing-toggle__option pricing-toggle__option--active">
+          <span>С клубной картой</span>
+          <span class="pricing-toggle__badge">-50%</span>
+        </div>
+        <div class="pricing-toggle__option">Без клубной карты</div>
       </div>
 
-      <!-- Description — top right -->
-      <div class="floors-description">
-        <p>Банный комплекс нового поколения</p>
-        <p>4 этажа отдыха, парения, бассейнов, ресторанных зон и впечатлений<br>в Санкт-Петербурге</p>
-      </div>
+      <div class="pricing-table">
+        <div class="pricing-row pricing-row--weekday">
+          <div class="pricing-label-cell pricing-label-cell--offset">
+            <h2 class="pricing-section-title">Будние</h2>
+          </div>
 
-      <!-- Floor card — left -->
-      <div class="floor-card floor-card--left">
-        <h2 class="floor-card__title">1 этаж</h2>
-        <p class="floor-card__text">Оснащен специальными бассейнами и спа зонами</p>
-        <a href="#rules" class="floor-card__link">Правила посещения</a>
-      </div>
+          <div class="pricing-period-panel pricing-period-panel--weekday">
+            <div class="pricing-period-spacer" aria-hidden="true"></div>
+            <div class="pricing-period-group">
+              <div class="pricing-card pricing-card--muted">
+                <div class="pricing-card__line pricing-card__line--muted">
+                  <span class="pricing-card__title">Утро</span>
+                  <span class="pricing-card__value">8:00 – 11:00</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--muted">
+                <div class="pricing-card__line pricing-card__line--muted">
+                  <span class="pricing-card__title">День</span>
+                  <span class="pricing-card__value">11:00 – 17:00</span>
+                </div>
+              </div>
+            </div>
+            <div class="pricing-period-group pricing-period-group--offset">
+              <div class="pricing-card pricing-card--muted">
+                <div class="pricing-card__line pricing-card__line--muted">
+                  <span class="pricing-card__title">Вечер</span>
+                  <span class="pricing-card__value">20:00 – 23:00</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--muted">
+                <div class="pricing-card__line pricing-card__line--muted">
+                  <span class="pricing-card__title">Весь день</span>
+                  <span class="pricing-card__value">8:00 – 23:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <!-- Floor card — right -->
-      <div class="floor-card floor-card--right">
-        <h2 class="floor-card__title">1 этаж</h2>
-        <p class="floor-card__text">Оснащен специальными бассейнами и спа зонами</p>
+          <div class="pricing-rank-panel">
+            <h3 class="pricing-rank-title">Первый разряд</h3>
+            <div class="pricing-offer-list">
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">1 час</span>
+                  <span class="pricing-card__value">300 ₽</span>
+                </div>
+                <p class="pricing-card__note">Доступен только первый этаж</p>
+              </div>
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">2 часа</span>
+                  <span class="pricing-card__value">700 ₽</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">3 часа</span>
+                  <span class="pricing-card__value">950 ₽</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">Вечерний</span>
+                  <span class="pricing-card__value">1100 ₽</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">Безлимит</span>
+                  <span class="pricing-card__value">1400 ₽</span>
+                </div>
+                <p class="pricing-card__note">с 08:00 до 11:00 доступен только первый этаж</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pricing-rank-panel">
+            <h3 class="pricing-rank-title">Высший разряд</h3>
+            <div class="pricing-offer-list pricing-offer-list--top-offset">
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">2 часа</span>
+                  <span class="pricing-card__value">1900 ₽</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">3 часа</span>
+                  <span class="pricing-card__value">2600 ₽</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">Вечерний</span>
+                  <span class="pricing-card__value">2800 ₽</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">Безлимит</span>
+                  <span class="pricing-card__value">1400 ₽</span>
+                </div>
+                <p class="pricing-card__note">доступен только с 11:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-row pricing-row--weekend">
+          <div class="pricing-label-cell">
+            <h2 class="pricing-section-title">Выходные</h2>
+          </div>
+
+          <div class="pricing-period-panel">
+            <div class="pricing-period-group">
+              <div class="pricing-card pricing-card--muted">
+                <div class="pricing-card__line pricing-card__line--muted">
+                  <span class="pricing-card__title">Вечер</span>
+                  <span class="pricing-card__value">20:00 – 23:00</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--muted">
+                <div class="pricing-card__line pricing-card__line--muted">
+                  <span class="pricing-card__title">Весь день</span>
+                  <span class="pricing-card__value">11:00 – 23:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pricing-rank-panel pricing-rank-panel--compact">
+            <div class="pricing-offer-list">
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">Вечерний</span>
+                  <span class="pricing-card__value">1600 ₽</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">Безлимит</span>
+                  <span class="pricing-card__value">2100 ₽</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pricing-rank-panel pricing-rank-panel--compact">
+            <div class="pricing-offer-list">
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">Вечерний</span>
+                  <span class="pricing-card__value">2100 ₽</span>
+                </div>
+              </div>
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">Безлимит</span>
+                  <span class="pricing-card__value">2750 ₽</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-row pricing-row--kids">
+          <div class="pricing-label-cell pricing-label-cell--wide">
+            <h2 class="pricing-section-title">Дети</h2>
+          </div>
+
+          <div class="pricing-rank-panel pricing-rank-panel--compact">
+            <div class="pricing-offer-list">
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">До 5 лет</span>
+                  <span class="pricing-card__value">Бесплатно</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pricing-rank-panel pricing-rank-panel--compact">
+            <div class="pricing-offer-list">
+              <div class="pricing-card pricing-card--glass">
+                <div class="pricing-card__line">
+                  <span class="pricing-card__title">До 10 лет</span>
+                  <span class="pricing-card__value">50% скидка</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -263,11 +587,271 @@
       });
     })();
 
+    /* ── Резервируем место под нижнюю навигацию для секции этажей ── */
+    (function () {
+      var root = document.documentElement;
+      var nav = document.querySelector('.nav');
+      if (!nav) return;
+
+      function syncNavReservedSpace() {
+        var navStyles = window.getComputedStyle(nav);
+        var navBottom = parseFloat(navStyles.bottom) || 0;
+        var navHeight = Math.ceil(nav.getBoundingClientRect().height);
+        root.style.setProperty('--nav-reserved-space', Math.max(navBottom + navHeight, 0) + 'px');
+      }
+
+      syncNavReservedSpace();
+      window.addEventListener('resize', syncNavReservedSpace);
+      window.addEventListener('load', syncNavReservedSpace);
+
+      if (window.ResizeObserver) {
+        var navResizeObserver = new ResizeObserver(syncNavReservedSpace);
+        navResizeObserver.observe(nav);
+      }
+    })();
+
+    /* ── План этажа: одна активная плашка + слоник на схеме ── */
+    (function () {
+      var floorMarkerMap = {
+        'floor-1': {
+          'floor-feature--thermo': { x: 23.5, y: 37.0 },
+          'floor-feature--steam': { x: 41.5, y: 49.5 },
+          'floor-feature--snow': { x: 13.8, y: 47.2 },
+          'floor-feature--waves': { x: 57.5, y: 33.5 },
+          'floor-feature--bubbles': { x: 52.8, y: 37.8 },
+          'floor-feature--drop': { x: 49.3, y: 30.2 },
+          'floor-feature--cascade': { x: 78.8, y: 31.8 }
+        },
+        'floor-2': {
+          'floor-feature--cup': { x: 78.0, y: 60.0 },
+          'floor-feature--cutlery': { x: 32.0, y: 60.0 },
+          'floor-feature--ball': { x: 53.5, y: 71.5 },
+          'floor-feature--thermo': { x: 83.5, y: 69.0 },
+          'floor-feature--massage': { x: 51.5, y: 37.0 },
+          'floor-feature--seat': { x: 50.5, y: 90.5 }
+        },
+        'floor-3': {
+          'floor-feature--wine': { x: 49.0, y: 86.0 },
+          'floor-feature--seat': { x: 56.0, y: 43.0 }
+        },
+        'floor-4': {
+          'floor-feature--wine': { x: 37.0, y: 87.0 },
+          'floor-feature--seat': { x: 58.0, y: 19.0 },
+          'floor-feature--wood': { x: 15.5, y: 26.5 },
+          'floor-feature--drop': { x: 17.5, y: 56.0 },
+          'floor-feature--bubbles': { x: 34.0, y: 63.0 },
+          'floor-feature--infrared': { x: 74.5, y: 64.5 },
+          'floor-feature--thermo': { x: 87.0, y: 41.0 },
+          'floor-feature--steam': { x: 92.5, y: 54.5 },
+          'floor-feature--massage': { x: 73.5, y: 76.0 },
+          'floor-feature--sun': { x: 43.5, y: 15.8 }
+        }
+      };
+
+      function getFeatureKey(feature) {
+        for (var i = 0; i < feature.classList.length; i++) {
+          var className = feature.classList[i];
+          if (className.indexOf('floor-feature--') === 0) return className;
+        }
+        return '';
+      }
+
+      function setActiveFeature(section, feature) {
+        var visual = section.querySelector('.floor-showcase__visual');
+        var features = section.querySelectorAll('.floor-showcase__panel--plan .floor-feature');
+        if (!visual || !feature) return;
+
+        for (var i = 0; i < features.length; i++) {
+          features[i].classList.remove('is-active');
+          features[i].setAttribute('aria-pressed', 'false');
+        }
+
+        feature.classList.add('is-active');
+        feature.setAttribute('aria-pressed', 'true');
+        visual.style.setProperty('--marker-x', feature.getAttribute('data-marker-x') + '%');
+        visual.style.setProperty('--marker-y', feature.getAttribute('data-marker-y') + '%');
+        visual.classList.add('has-marker');
+      }
+
+      function installMarker(section) {
+        var sectionMap = floorMarkerMap[section.id];
+        var visual = section.querySelector('.floor-showcase__visual');
+        var features = section.querySelectorAll('.floor-showcase__panel--plan .floor-feature');
+        var marker;
+        var markerImg;
+        var firstMapped = null;
+        var activeFeature = null;
+
+        if (!sectionMap || !visual || !features.length) return;
+
+        marker = document.createElement('div');
+        marker.className = 'floor-showcase__marker';
+        marker.setAttribute('aria-hidden', 'true');
+
+        markerImg = document.createElement('img');
+        markerImg.src = 'assets/elephant-small.svg';
+        markerImg.alt = '';
+        marker.appendChild(markerImg);
+        visual.appendChild(marker);
+
+        for (var i = 0; i < features.length; i++) {
+          var feature = features[i];
+          var featureKey = getFeatureKey(feature);
+          var point = sectionMap[featureKey];
+
+          if (!point) continue;
+
+          if (!firstMapped) firstMapped = feature;
+          if (feature.classList.contains('is-active')) activeFeature = feature;
+
+          feature.setAttribute('role', 'button');
+          feature.setAttribute('tabindex', '0');
+          feature.setAttribute('aria-pressed', feature.classList.contains('is-active') ? 'true' : 'false');
+          feature.setAttribute('data-marker-x', point.x);
+          feature.setAttribute('data-marker-y', point.y);
+
+          feature.addEventListener('click', function () {
+            setActiveFeature(section, this);
+          });
+
+          feature.addEventListener('keydown', function (event) {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            setActiveFeature(section, this);
+          });
+        }
+
+        setActiveFeature(section, activeFeature || firstMapped);
+      }
+
+      var sections = document.querySelectorAll('.floor-showcase');
+      for (var i = 0; i < sections.length; i++) {
+        installMarker(sections[i]);
+      }
+    })();
+
+    /* ── Floors scroll stage ── */
+    (function () {
+      var floors = document.querySelector('.floors');
+      var stage = floors ? floors.querySelector('.floors-stage') : null;
+      if (!floors) return;
+      if (!stage) return;
+
+      var slides = Array.prototype.slice.call(floors.querySelectorAll('.floor-showcase'));
+      if (!slides.length) return;
+
+      floors.style.setProperty('--floors-count', String(slides.length));
+
+      var ticking = false;
+
+      function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+      }
+
+      function syncSlideFocus(slide, isActive) {
+        var features = slide.querySelectorAll('.floor-showcase__panel--plan .floor-feature[role="button"]');
+        for (var i = 0; i < features.length; i++) {
+          features[i].setAttribute('tabindex', isActive ? '0' : '-1');
+        }
+      }
+
+      function resetMobileState() {
+        slides.forEach(function (slide) {
+          slide.style.removeProperty('--floor-opacity');
+          slide.style.removeProperty('--floor-scale');
+          slide.style.removeProperty('--floor-shift');
+          slide.style.removeProperty('--floor-blur');
+          slide.style.removeProperty('--floor-visual-scale');
+          slide.style.removeProperty('z-index');
+          slide.classList.remove('is-current', 'is-before', 'is-after');
+          slide.removeAttribute('aria-hidden');
+          syncSlideFocus(slide, true);
+        });
+      }
+
+      function getStageHeight() {
+        return Math.max(stage.getBoundingClientRect().height, 1);
+      }
+
+      function updateFloors() {
+        ticking = false;
+
+        if (window.matchMedia('(max-width: 1024px)').matches) {
+          resetMobileState();
+          return;
+        }
+
+        var stageHeight = getStageHeight();
+        var range = Math.max(floors.offsetHeight - stageHeight, 1);
+        var local = clamp(-floors.getBoundingClientRect().top, 0, range);
+        var segment = Math.max(range / Math.max(slides.length - 1, 1), 1);
+        var activeIndex = clamp(Math.round(local / segment), 0, slides.length - 1);
+
+        floors.style.setProperty('--floors-progress', String(activeIndex));
+
+        slides.forEach(function (slide, index) {
+          var offset = index - activeIndex;
+          var distance = Math.abs(offset);
+          var current = distance === 0;
+          var opacity = current ? 1 : 0;
+          var scale = current ? 1 : distance === 1 ? 0.95 : 0.92;
+          var shift = current ? 0 : offset * 16;
+          var blur = current ? 0 : distance === 1 ? 14 : 18;
+          var visualScale = current ? 1 : distance === 1 ? 0.9 : 0.84;
+
+          slide.style.setProperty('--floor-opacity', opacity.toFixed(4));
+          slide.style.setProperty('--floor-scale', scale.toFixed(4));
+          slide.style.setProperty('--floor-shift', shift.toFixed(3) + 'vh');
+          slide.style.setProperty('--floor-blur', blur.toFixed(3) + 'px');
+          slide.style.setProperty('--floor-visual-scale', visualScale.toFixed(4));
+          slide.style.zIndex = current ? '120' : String(100 - Math.round(distance * 10));
+
+          slide.classList.toggle('is-current', current);
+          slide.classList.toggle('is-before', offset < 0);
+          slide.classList.toggle('is-after', offset > 0);
+          slide.setAttribute('aria-hidden', current ? 'false' : 'true');
+          syncSlideFocus(slide, current);
+        });
+      }
+
+      function requestUpdate() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(updateFloors);
+      }
+
+      function syncHashFloor() {
+        if (window.matchMedia('(max-width: 1024px)').matches) return;
+        if (!window.location.hash || !/^#floor-\d+$/.test(window.location.hash)) return;
+
+        var floorIndex = parseInt(window.location.hash.replace('#floor-', ''), 10) - 1;
+        if (isNaN(floorIndex) || floorIndex < 0 || floorIndex >= slides.length) return;
+
+        var stageHeight = getStageHeight();
+        var range = Math.max(floors.offsetHeight - stageHeight, 1);
+        var target = floors.offsetTop + range * (floorIndex / Math.max(slides.length - 1, 1));
+
+        document.scrollingElement.scrollTop = target;
+        document.body.scrollTop = target;
+        requestUpdate();
+      }
+
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      document.body.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+      window.addEventListener('hashchange', syncHashFloor);
+
+      requestUpdate();
+      requestAnimationFrame(syncHashFloor);
+    })();
+
     /* ── Scroll-by-section: умный скролл ── */
     (function () {
       if (window.matchMedia('(max-width: 1024px)').matches) return;
 
-      var sections = document.querySelectorAll('.hero, .building, .decorative, .floors');
+      var sections = document.querySelectorAll('.hero, .pricing, .building, .decorative, .floors');
+      var pricingSection = document.querySelector('.pricing');
+      var floorsSection = document.querySelector('.floors');
       var targetIndex = 0;
       var animId = 0;
       var isAnimating = false;
@@ -356,9 +940,37 @@
         requestAnimationFrame(frame);
       }
 
+      function getSectionViewportHeight(section) {
+        if (!section) return window.innerHeight;
+
+        var stickyStage = section.querySelector('.floors-stage');
+        if (stickyStage && !window.matchMedia('(max-width: 1024px)').matches) {
+          return Math.max(stickyStage.getBoundingClientRect().height, 1);
+        }
+
+        return window.innerHeight;
+      }
+
+      function isInsideTallSection(section, scrollTop) {
+        if (!section) return false;
+
+        var sectionTop = section.offsetTop;
+        var sectionBottom = sectionTop + section.scrollHeight - getSectionViewportHeight(section);
+
+        if (sectionBottom <= sectionTop) return false;
+        return scrollTop >= sectionTop && scrollTop <= sectionBottom;
+      }
+
       document.body.addEventListener('wheel', function (e) {
         if (window.innerWidth <= 1024) return;
         if (!isMouseWheel(e)) return;
+
+        var scrollTop = document.body.scrollTop;
+
+        if (isInsideTallSection(pricingSection, scrollTop) || isInsideTallSection(floorsSection, scrollTop)) {
+          return;
+        }
+
         e.preventDefault();
 
         /* Игнорируем повторные events от одного тика колеса */
